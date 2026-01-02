@@ -1,0 +1,103 @@
+/* ============================
+   ADMIN DASHBOARD – ISOLATED
+   ============================ */
+
+.admin-layout .dashboard-content {
+  padding: var(--spacing-xl);
+}
+
+.admin-layout .stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.admin-layout .dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.admin-layout .dashboard-section {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-layout .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.admin-layout .section-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.admin-layout .btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.admin-layout .btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--dark);
+  color: var(--dark);
+}
+
+.admin-layout .btn-outline:hover {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.admin-layout .btn-primary {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.admin-layout .btn-primary:hover {
+  background-color: #333;
+}
+
+.admin-layout .vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .admin-layout .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-layout .dashboard-content {
+    padding: var(--spacing-md);
+  }
+
+  .admin-layout .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-layout .vehicles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-layout .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}

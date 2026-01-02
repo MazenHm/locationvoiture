@@ -1,0 +1,122 @@
+.filter-section {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.filter-group {
+  margin-bottom: var(--spacing-xl);
+}
+
+.filter-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.filter-option {
+  background-color: var(--secondary);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 20px;
+  font-size: var(--font-size-sm);
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-option:hover {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.filter-option.active {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.gps-tracking {
+  background-color: var(--dark);
+  color: var(--white);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.gps-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.gps-header i {
+  color: var(--primary);
+  font-size: var(--font-size-lg);
+}
+
+.gps-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.tracking-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.tracking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tracking-label {
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+}
+
+.tracking-value {
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.tracking-value.plate {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.tracking-value.status {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 20px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.tracking-value.status.active {
+  background-color: rgba(250, 255, 44, 0.2);
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .filter-section {
+    padding: var(--spacing-lg);
+  }
+  
+  .filter-options {
+    justify-content: center;
+  }
+  
+  .gps-tracking {
+    padding: var(--spacing-lg);
+  }
+}

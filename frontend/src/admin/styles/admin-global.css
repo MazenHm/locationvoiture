@@ -1,0 +1,67 @@
+/* ADMIN PORTAL ONLY - Global Reset & Base Styles */
+body.admin-portal {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.admin-portal-layout * {
+  box-sizing: border-box;
+}
+
+/* Admin-specific elements */
+.admin-portal-layout h1,
+.admin-portal-layout h2,
+.admin-portal-layout h3,
+.admin-portal-layout h4,
+.admin-portal-layout h5,
+.admin-portal-layout h6 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.admin-portal-layout a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.admin-portal-layout a:hover {
+  text-decoration: underline;
+}
+
+.admin-portal-layout button {
+  font-family: inherit;
+}
+
+/* Admin utility classes */
+.admin-portal-layout .admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.admin-portal-layout .admin-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 24px;
+}
+
+.admin-portal-layout .admin-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.admin-portal-layout .admin-btn:hover {
+  background: #2980b9;
+}

@@ -1,0 +1,77 @@
+.schedule-table-container {
+  overflow-x: auto;
+  border-radius: var(--border-radius-md);
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.schedule-table thead {
+  background-color: var(--secondary);
+}
+
+.schedule-table th {
+  padding: var(--spacing-lg);
+  text-align: left;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: var(--font-size-sm);
+  border-bottom: 1px solid var(--secondary);
+}
+
+.schedule-table td {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--secondary);
+}
+
+.vehicle-info-cell {
+  min-width: 200px;
+}
+
+.vehicle-id {
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.vehicle-model {
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+}
+
+.week-cell {
+  width: 40px;
+  height: 30px;
+  border-radius: var(--border-radius-sm);
+}
+
+.week-available {
+  background-color: var(--secondary);
+}
+
+.week-rented {
+  background-color: var(--primary);
+}
+
+.schedule-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: rgba(250, 255, 44, 0.05);
+}
+
+@media (max-width: 768px) {
+  .schedule-table th,
+  .schedule-table td {
+    padding: var(--spacing-md);
+  }
+  
+  .week-cell {
+    width: 30px;
+    height: 25px;
+  }
+}

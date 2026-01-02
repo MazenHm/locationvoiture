@@ -1,0 +1,31 @@
+/* ADMIN ONLY - Global Reset */
+.admin-layout * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.admin-layout body {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Admin-specific utility classes */
+.admin-layout .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.admin-layout .admin-btn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Add 'admin-layout' prefix to all your admin classes */

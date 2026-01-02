@@ -1,0 +1,742 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1E1B1C 0%, #2a2526 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  position: relative;
+}
+
+/* Add a subtle pattern overlay */
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.login-container {
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+  animation: slideUp 0.5s ease-out;
+  margin: auto;
+}
+
+/* Mobile Header */
+.mobile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.mobile-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logo-icon {
+  background: linear-gradient(135deg, #FAFF2C 0%, #FFEB3B 100%);
+  color: #1E1B1C;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(250, 255, 44, 0.3);
+}
+
+.mobile-logo h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1E1B1C;
+  letter-spacing: -0.5px;
+}
+
+.mobile-welcome h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1E1B1C;
+  margin-bottom: 8px;
+}
+
+.mobile-welcome p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Mobile Tabs */
+.mobile-tabs {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.mobile-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-tab i {
+  font-size: 16px;
+}
+
+.mobile-tab.active {
+  background: #1E1B1C;
+  color: white;
+  box-shadow: 0 2px 8px rgba(30, 27, 28, 0.2);
+}
+
+/* FIXED: Input with Icon */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon i {
+  position: absolute;
+  left: 16px;
+  color: #666;
+  font-size: 16px;
+  z-index: 1;
+  /* Center the icon vertically */
+  top: 50%;
+  transform: translateY(-50%);
+  /* Prevent icon from shrinking */
+  flex-shrink: 0;
+}
+
+.input-with-icon input {
+  width: 100%;
+  /* Adjust padding to make room for icon */
+  padding: 14px 16px 14px 48px; /* Increased left padding */
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #1E1B1C;
+  background: white;
+  transition: all 0.2s ease;
+  /* Remove default browser styles */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Ensure consistent height for all inputs */
+.input-with-icon input {
+  height: 52px; /* Fixed height */
+  box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.input-with-icon input:focus {
+  outline: none;
+  border-color: #1E1B1C;
+  box-shadow: 0 0 0 3px rgba(30, 27, 28, 0.1);
+}
+
+.input-with-icon input.error {
+  border-color: #f44336;
+}
+
+.input-with-icon input.error:focus {
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+/* Remove password toggle icon since we don't use it */
+.password-toggle {
+  display: none;
+}
+
+.error-message {
+  display: block;
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 6px;
+  padding-left: 8px;
+}
+
+.password-hint {
+  color: #666;
+  font-size: 12px;
+  margin-top: 6px;
+  padding-left: 8px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Form Options */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.mobile-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #1E1B1C;
+  user-select: none;
+}
+
+.mobile-checkbox input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-checkbox input:checked + .checkbox-custom {
+  background: #1E1B1C;
+  border-color: #1E1B1C;
+}
+
+.mobile-checkbox input:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.forgot-password {
+  background: none;
+  border: none;
+  color: #1E1B1C;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: #666;
+}
+
+/* Terms Agreement */
+.terms-agreement {
+  margin-bottom: 24px;
+}
+
+.terms-agreement .mobile-checkbox {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.terms-agreement a {
+  color: #1E1B1C;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.terms-agreement a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+.mobile-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px; /* Match input height */
+}
+
+.mobile-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mobile-btn.primary {
+  background: #1E1B1C;
+  color: white;
+  box-shadow: 0 4px 12px rgba(30, 27, 28, 0.2);
+}
+
+.mobile-btn.primary:hover:not(:disabled) {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 27, 28, 0.3);
+}
+
+.mobile-btn.outline {
+  background: white;
+  color: #1E1B1C;
+  border: 2px solid #e0e0e0;
+}
+
+.mobile-btn.outline:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #1E1B1C;
+}
+
+.mobile-btn.demo-admin {
+  background: linear-gradient(135deg, #FAFF2C 0%, #FFEB3B 100%);
+  color: #1E1B1C;
+  border: none;
+  font-weight: 700;
+}
+
+.mobile-btn.demo-admin:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(250, 255, 44, 0.3);
+}
+
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Notes */
+.registration-note,
+.demo-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.registration-note i,
+.demo-note i {
+  color: #666;
+  font-size: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.registration-note p,
+.demo-note p {
+  color: #666;
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  color: #999;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.divider span {
+  padding: 0 12px;
+}
+
+/* Demo Section */
+.demo-section {
+  margin-bottom: 24px;
+}
+
+/* Switch Mode */
+.switch-mode {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 20px;
+}
+
+.switch-mode p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.switch-btn {
+  background: none;
+  border: none;
+  color: #1E1B1C;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.switch-btn:hover {
+  color: #333;
+}
+
+/* Mobile Footer */
+.mobile-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.copyright {
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.version {
+  color: #999;
+  font-size: 11px;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #1E1B1C;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #FAFF2C;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+/* Chic Notification Toast */
+.notification-toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  min-width: 350px;
+  max-width: 400px;
+  z-index: 9999;
+  animation: slideInRight 0.3s ease-out;
+  border-left: 4px solid transparent;
+  overflow: hidden;
+}
+
+.notification-success {
+  border-left-color: #2ecc71;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fff4 100%);
+}
+
+.notification-error {
+  border-left-color: #e74c3c;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+}
+
+.notification-info {
+  border-left-color: #3498db;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.notification-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.notification-success .notification-icon {
+  color: #2ecc71;
+}
+
+.notification-error .notification-icon {
+  color: #e74c3c;
+}
+
+.notification-info .notification-icon {
+  color: #3498db;
+}
+
+.notification-message {
+  flex: 1;
+}
+
+.notification-message h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.notification-message p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.notification-close:hover {
+  color: #333;
+}
+
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.notification-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #667eea;
+  animation: progressBar 5s linear forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+/* Add smooth fade out */
+.notification-toast {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Make logo icon look better */
+.logo-icon i {
+  font-size: 24px;
+}
+
+/* Button icons */
+.mobile-btn i {
+  font-size: 14px;
+}
+
+/* Responsive notifications */
+@media (max-width: 480px) {
+  .notification-toast {
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    min-width: auto;
+    max-width: none;
+  }
+}
+
+/* Add subtle animation to form */
+.mobile-form {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 16px;
+  }
+  
+  .login-container {
+    padding: 30px 20px;
+    border-radius: 20px;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  .mobile-welcome h2 {
+    font-size: 22px;
+  }
+  
+  .mobile-welcome p {
+    font-size: 13px;
+  }
+  
+  .mobile-tab {
+    font-size: 13px;
+    padding: 10px;
+  }
+  
+  .mobile-btn {
+    padding: 14px;
+    min-height: 48px;
+  }
+  
+  .input-with-icon input {
+    height: 48px;
+    padding: 12px 16px 12px 48px;
+  }
+}
+
+/* Ensure form is vertically centered */
+@media (min-height: 600px) {
+  .login-page {
+    align-items: center;
+  }
+}
+
+/* Remove conflicting media query */
+@media (max-height: 700px) {
+  .login-page {
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+/* Add some breathing room on very large screens */
+@media (min-height: 900px) {
+  .login-page {
+    padding: 40px 20px;
+  }
+  
+  .login-container {
+    padding: 50px 40px;
+  }
+}
+
+/* Fix for iOS Safari input styling */
+@supports (-webkit-touch-callout: none) {
+  .input-with-icon input {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
