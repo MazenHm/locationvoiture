@@ -15,21 +15,15 @@ pipeline {
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Build Backend Image') {
             steps {
-                script {
-                    docker.build("${DOCKERHUB_USER}/${BACKEND_IMAGE}", "backend")
-                    docker.build("${DOCKERHUB_USER}/${FRONTEND_IMAGE}", "frontend")
-                }
+                sh 'docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE backend'
             }
         }
 
-        stage('Security Scan with Trivy') {
+        stage('Build Frontend Image') {
             steps {
-                sh '''
-                trivy image ${DOCKERHUB_USER}/${BACKEND_IMAGE}
-                trivy image ${DOCKERHUB_USER}/${FRONTEND_IMAGE}
-                '''
+                sh 'docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE frontend'
             }
         }
 
@@ -42,8 +36,8 @@ pipeline {
                 )]) {
                     sh '''
                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                    docker push ${DOCKERHUB_USER}/${BACKEND_IMAGE}
-                    docker push ${DOCKERHUB_USER}/${FRONTEND_IMAGE}
+                    docker push $DOCKERHUB_USER/$BACKEND_IMAGE
+                    docker push $DOCKERHUB_USER/$FRONTEND_IMAGE
                     '''
                 }
             }
