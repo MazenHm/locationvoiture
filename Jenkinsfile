@@ -1,57 +1,56 @@
 pipeline {
-  agent any
-  options {
-    timestamps()
-  }
+    agent any
 
-  environment {
-    DOCKERHUB_USER = "mazenhammouda"
-    BACKEND_IMAGE  = "locationvoiture-backend"
-    FRONTEND_IMAGE = "locationvoiture-frontend"
-    REPO_URL       = "https://github.com/MazenHm/locationvoiture.git"
-  }
-
-  stages {
-
-    stage('Clean Workspace') {
-      steps {
-        deleteDir()
-      }
+    environment {
+        BACKEND_IMAGE  = "mazenhammouda/locationvoiture-backend:latest"
+        FRONTEND_IMAGE = "mazenhammouda/locationvoiture-frontend:latest"
     }
 
-    stage('Checkout Code') {
-      steps {
-        git url: "${REPO_URL}", branch: "main"
-        sh 'git status'
-      }
-    }
+    stages {
 
-    stage('Build Backend') {
-      steps {
-        sh 'docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE backend'
-      }
-    }
-
-    stage('Build Frontend') {
-      steps {
-        sh 'docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE frontend'
-      }
-    }
-
-    stage('Push Images') {
-      steps {
-        withCredentials([usernamePassword(
-          credentialsId: 'dockerhub-creds',
-          usernameVariable: 'DOCKER_USER',
-          passwordVariable: 'DOCKER_PASS'
-        )]) {
-          sh '''
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker push $DOCKERHUB_USER/$BACKEND_IMAGE
-            docker push $DOCKERHUB_USER/$FRONTEND_IMAGE
-          '''
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
         }
-      }
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/MazenHm/locationvoiture.git'
+            }
+        }
+
+        stage('Build Backend Image') {
+            steps {
+                dir('backend') {
+                    sh 'docker build -t $BACKEND_IMAGE .'
+                }
+            }
+        }
+
+        stage('Build Frontend Image') {
+            steps {
+                dir('frontend') {
+                    sh 'docker build -t $FRONTEND_IMAGE .'
+                }
+            }
+        }
+
+        stage('Push Images to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push $BACKEND_IMAGE
+                        docker push $FRONTEND_IMAGE
+                    '''
+                }
+            }
+        }
     }
-  }
 }
