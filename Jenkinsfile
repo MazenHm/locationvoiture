@@ -1,56 +1,30 @@
 pipeline {
     agent any
 
-    environment {
-        BACKEND_IMAGE  = "mazenhammouda/locationvoiture-backend:latest"
-        FRONTEND_IMAGE = "mazenhammouda/locationvoiture-frontend:latest"
-    }
-
     stages {
 
-        stage('Clean Workspace') {
+        stage('Checkout') {
             steps {
-                deleteDir()
+                git 'https://github.com/MazenHm/locationvoiture.git'
             }
         }
 
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/MazenHm/locationvoiture.git'
-            }
-        }
-
-        stage('Build Backend Image') {
+        stage('Build Backend') {
             steps {
                 dir('backend') {
-                    sh 'docker build -t $BACKEND_IMAGE .'
+                    sh 'docker build -t mazenhammouda/locationvoiture-backend .'
                 }
             }
         }
 
-        stage('Build Frontend Image') {
+        stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'docker build -t $FRONTEND_IMAGE .'
-                }
-            }
-        }
-
-        stage('Push Images to Docker Hub') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-creds',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    sh '''
-                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push $BACKEND_IMAGE
-                        docker push $FRONTEND_IMAGE
-                    '''
+                    sh 'docker build -t mazenhammouda/locationvoiture-frontend .'
                 }
             }
         }
     }
 }
+
+
