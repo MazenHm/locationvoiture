@@ -3,16 +3,10 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/MazenHm/locationvoiture.git'
-            }
-        }
-
         stage('Build Backend') {
             steps {
                 dir('backend') {
-                    sh 'docker build -t mazenhammouda/locationvoiture-backend .'
+                    sh 'docker build -t mazenhammouda/locationvoiture-backend:latest .'
                 }
             }
         }
@@ -20,11 +14,10 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'docker build -t mazenhammouda/locationvoiture-frontend .'
+                    sh 'docker build -t mazenhammouda/locationvoiture-frontend:latest .'
                 }
             }
         }
+
     }
 }
-
-
